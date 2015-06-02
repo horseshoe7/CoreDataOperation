@@ -14,6 +14,10 @@
 		DC6951461B1DCE50005FBF16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC6951451B1DCE50005FBF16 /* Images.xcassets */; };
 		DC6951491B1DCE50005FBF16 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC6951471B1DCE50005FBF16 /* LaunchScreen.xib */; };
 		DC6951551B1DCE50005FBF16 /* CoreDataOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6951541B1DCE50005FBF16 /* CoreDataOperationTests.m */; };
+		DC6951601B1DD360005FBF16 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DC69515F1B1DD360005FBF16 /* Podfile */; };
+		DC69516C1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC69516A1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld */; };
+		DC69516F1B1DD630005FBF16 /* CDOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC69516E1B1DD630005FBF16 /* CDOUser.m */; };
+		DC6951721B1DD640005FBF16 /* _CDOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6951711B1DD640005FBF16 /* _CDOUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,15 @@
 		DC69514E1B1DCE50005FBF16 /* CoreDataOperationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataOperationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6951531B1DCE50005FBF16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC6951541B1DCE50005FBF16 /* CoreDataOperationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataOperationTests.m; sourceTree = "<group>"; };
+		DC69515E1B1DCEA6005FBF16 /* TutorialInfo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TutorialInfo.txt; sourceTree = "<group>"; };
+		DC69515F1B1DD360005FBF16 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		DC6951651B1DD3AD005FBF16 /* mogenerator */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mogenerator; sourceTree = "<group>"; };
+		DC6951661B1DD3AD005FBF16 /* update_models.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_models.sh; sourceTree = "<group>"; };
+		DC69516B1B1DD475005FBF16 /* CoreDataOperation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataOperation.xcdatamodel; sourceTree = "<group>"; };
+		DC69516D1B1DD630005FBF16 /* CDOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOUser.h; sourceTree = "<group>"; };
+		DC69516E1B1DD630005FBF16 /* CDOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOUser.m; sourceTree = "<group>"; };
+		DC6951701B1DD640005FBF16 /* _CDOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CDOUser.h; sourceTree = "<group>"; };
+		DC6951711B1DD640005FBF16 /* _CDOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CDOUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +76,8 @@
 		DC69512C1B1DCE4F005FBF16 = {
 			isa = PBXGroup;
 			children = (
+				DC69515E1B1DCEA6005FBF16 /* TutorialInfo.txt */,
+				DC69515F1B1DD360005FBF16 /* Podfile */,
 				DC6951371B1DCE4F005FBF16 /* CoreDataOperation */,
 				DC6951511B1DCE50005FBF16 /* CoreDataOperationTests */,
 				DC6951361B1DCE4F005FBF16 /* Products */,
@@ -88,6 +103,7 @@
 				DC6951421B1DCE50005FBF16 /* Main.storyboard */,
 				DC6951451B1DCE50005FBF16 /* Images.xcassets */,
 				DC6951471B1DCE50005FBF16 /* LaunchScreen.xib */,
+				DC6951611B1DD3AD005FBF16 /* Source */,
 				DC6951381B1DCE4F005FBF16 /* Supporting Files */,
 			);
 			path = CoreDataOperation;
@@ -119,6 +135,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DC6951611B1DD3AD005FBF16 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DC6951621B1DD3AD005FBF16 /* Models */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		DC6951621B1DD3AD005FBF16 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC6951631B1DD3AD005FBF16 /* CoreData */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DC6951631B1DD3AD005FBF16 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DC6951651B1DD3AD005FBF16 /* mogenerator */,
+				DC6951661B1DD3AD005FBF16 /* update_models.sh */,
+				DC69516A1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld */,
+				DC6951641B1DD3AD005FBF16 /* _generated */,
+				DC69516D1B1DD630005FBF16 /* CDOUser.h */,
+				DC69516E1B1DD630005FBF16 /* CDOUser.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		DC6951641B1DD3AD005FBF16 /* _generated */ = {
+			isa = PBXGroup;
+			children = (
+				DC6951701B1DD640005FBF16 /* _CDOUser.h */,
+				DC6951711B1DD640005FBF16 /* _CDOUser.m */,
+			);
+			path = _generated;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,6 +180,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC6951581B1DCE50005FBF16 /* Build configuration list for PBXNativeTarget "CoreDataOperation" */;
 			buildPhases = (
+				DC6951691B1DD3E9005FBF16 /* ShellScript */,
 				DC6951311B1DCE4F005FBF16 /* Sources */,
 				DC6951321B1DCE4F005FBF16 /* Frameworks */,
 				DC6951331B1DCE4F005FBF16 /* Resources */,
@@ -201,6 +256,7 @@
 			files = (
 				DC6951441B1DCE50005FBF16 /* Main.storyboard in Resources */,
 				DC6951491B1DCE50005FBF16 /* LaunchScreen.xib in Resources */,
+				DC6951601B1DD360005FBF16 /* Podfile in Resources */,
 				DC6951461B1DCE50005FBF16 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,13 +270,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DC6951691B1DD3E9005FBF16 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PROJECT_NAME=CoreDataOperation\nSCRIPT_PATH=${SRCROOT}/${PROJECT_NAME}/Source/Models/CoreData\ncd ${SCRIPT_PATH}\n./update_models.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DC6951311B1DCE4F005FBF16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DC6951411B1DCE50005FBF16 /* ViewController.m in Sources */,
+				DC6951721B1DD640005FBF16 /* _CDOUser.m in Sources */,
 				DC69513E1B1DCE50005FBF16 /* AppDelegate.m in Sources */,
+				DC69516F1B1DD630005FBF16 /* CDOUser.m in Sources */,
+				DC69516C1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld in Sources */,
 				DC69513B1B1DCE50005FBF16 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +503,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DC69516A1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DC69516B1B1DD475005FBF16 /* CoreDataOperation.xcdatamodel */,
+			);
+			currentVersion = DC69516B1B1DD475005FBF16 /* CoreDataOperation.xcdatamodel */;
+			path = CoreDataOperation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DC69512D1B1DCE4F005FBF16 /* Project object */;
 }

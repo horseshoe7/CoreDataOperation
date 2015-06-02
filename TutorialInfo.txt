@@ -1,0 +1,72 @@
+
+Core Data and NSOperation - How I get it right
+
+(## = action item when doing tutorial)
+
+The goal of this tutorial is ultimately how to show you how to use NSOperation to make Core Data a bit more pleasant.
+
+It should teach you:
+
+- A bit about Core Data and background threads
+- How to use NSOperation effectively in a concurrent way
+- How to really see the benefits of Core Data
+
+Tutorial Steps
+
+1.  Boiler Plate for Core Data
+
+
+Core Data is indeed a beast.  I have 2 key tools in my toolchest to make Core Data enjoyable.  They are mogenerator and Magical Record.
+
+1.1 Podfile
+
+Magical Record is a beautiful addition to Core Data that re-imagines the Core Data API and makes it a lot more intuitive and straightforward to use.  The beauty is that it sits on top of Core Data as categories.  Again, also worth reading up on.  Now normally I would advise against too many dependencies or introducing too many frameworks into your project, but Magical Record is mature and was written by one of the most valued writers on the topic.  So, it's "safe".
+
+## Add Podfile
+
+1.2 Build Scripts / Run Scripts
+
+We use build scripts to mostly automate what mogenerator does.  Mogenerator looks at the Core Data model file and generates the classes that it does.  There are cases, such as when you add entities to your data model that you will result in mogenerator generating new files that have to be imported by hand into your project.  So keep your eye out for that when building.
+
+We use a shell script called "update_models.sh" and have it run in the build phases, just before you compile your source files.  Why?  Because you need mogenerator to update your source files before the compiler compiles them.
+
+
+(Good Style)
+
+I tend to keep my project files 1:1 with the file system.  That way if something goes wrong with your project, it's easy enough to re-import files and the group hierarchy is maintained.
+
+- (SRCROOT)
+    - Source
+        - Models
+            - CoreData
+                - update_models.sh
+                - mogenerator
+                - _generated
+
+
+## Copy update_models.sh and mogenerator
+
+## Create Run Script
+
+1.3  Test Pipeline
+
+1.3.1  pod install, open workspace
+
+1.3.2 Test mogenerator pipeline
+
+To test all these things are in place, we should now build.
+
+## Build.  Look at log.  Didn't generate anything. No entities in Model!
+
+## Create some class, Build.  Show how you have to import by hand for new classes.
+
+    2 Machine files, and 2 Human files generated.  THIS IS YOUR INDICATOR!
+
+## Update an attribute.  Build.  Don't have to do anything.
+
+    If you change attributes, machine files will be generated, but often just overridden, so these files will exist in your project already.  If 2 and 2 are generated, this implies you added or renamed an entity.
+
+
+#### END SECTION 1. ####
+
+
