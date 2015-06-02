@@ -19,6 +19,7 @@
 		DC69516C1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC69516A1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld */; };
 		DC69516F1B1DD630005FBF16 /* CDOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC69516E1B1DD630005FBF16 /* CDOUser.m */; };
 		DC6951721B1DD640005FBF16 /* _CDOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6951711B1DD640005FBF16 /* _CDOUser.m */; };
+		DC69517E1B1DDC9D005FBF16 /* CDOApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DC69517D1B1DDC9D005FBF16 /* CDOApplication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		DC6951711B1DD640005FBF16 /* _CDOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CDOUser.m; sourceTree = "<group>"; };
 		DC6951751B1DD7AE005FBF16 /* 01-TutorialInfo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "01-TutorialInfo.txt"; sourceTree = "<group>"; };
 		DC6951761B1DD7AE005FBF16 /* 02-TutorialInfo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "02-TutorialInfo.txt"; sourceTree = "<group>"; };
+		DC69517C1B1DDC9D005FBF16 /* CDOApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOApplication.h; sourceTree = "<group>"; };
+		DC69517D1B1DDC9D005FBF16 /* CDOApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOApplication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +206,8 @@
 		DC6951771B1DDA76005FBF16 /* ApplicationController */ = {
 			isa = PBXGroup;
 			children = (
+				DC69517C1B1DDC9D005FBF16 /* CDOApplication.h */,
+				DC69517D1B1DDC9D005FBF16 /* CDOApplication.m */,
 				DC6951781B1DDA89005FBF16 /* DataOperations */,
 			);
 			path = ApplicationController;
@@ -378,6 +383,7 @@
 				DC69513E1B1DCE50005FBF16 /* AppDelegate.m in Sources */,
 				DC69516F1B1DD630005FBF16 /* CDOUser.m in Sources */,
 				DC69516C1B1DD475005FBF16 /* CoreDataOperation.xcdatamodeld in Sources */,
+				DC69517E1B1DDC9D005FBF16 /* CDOApplication.m in Sources */,
 				DC69513B1B1DCE50005FBF16 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
