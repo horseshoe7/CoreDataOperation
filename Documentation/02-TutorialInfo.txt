@@ -1,0 +1,30 @@
+1.5.  Style and Architecture
+----------------------------
+
+This isn't so much a section as it is a tangent, but I thought it of interest to talk about structure.  Most tutorials you see out there are limited to the simple technology they are demonstrating, and very little is ever discussed as to design patterns for an actual app.
+
+It's ultimately up to you how you want to organize your app, but I thought it here a decent idea to share with you some of the approaches I take, as I have built a good number of apps, and they have been reported to be rather stable.  :D
+
+Just remember, as I must:  There is ALWAYS a bigger fish.  I have been doing this for 4-5 years, so I know there is a bigger fish.  For some reason he doesn't ever find me.
+
+What I notice in my apps is that there are always aspects of the app that never seem to "belong" to a View Controller.  There are app-wide methods and functionality you need that aren't bound to any one instance of anything, except the application itself.  Now, Apple already provides the Application Delegate, but I don't know about you, I don't like using Macros in code, because they work "for you", but anyone else using your code has to understand what your macros do.
+
+I also don't like writing
+
+```AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];```
+
+and I also don't like having a 'fat delegate'.  I see it as an entry point to an app, and that's it.  No, I tend to keep a singleton instance to my application that owns certain tasks/objects that aren't view controller specific, such as:
+
+    - an event logger
+    - an operation queue
+    - a networking client
+    - notification handler
+    - convenience methods
+
+It's hard to say what this should have because of course Applications are specific to the erm... application you need to build.
+
+That said, I thought I'd digress briefly so to mention an appropriate place to keep an instance to an NSOperationQueue, since this is our next topic.
+
+## Create CDOApplication singleton, then remove it from project.  Commit as section_01.5.  Then add to project.  Commit. as section_01.5.1 ##
+
+
