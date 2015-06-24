@@ -22,6 +22,8 @@
     self = [super initWithModel:user];  // keeps objectId reference.
     if (self) {
         
+        self.delayTime = 1.2f;
+        
         _updatedName = updatedName;
     }
     return self;

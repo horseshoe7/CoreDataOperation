@@ -61,7 +61,7 @@ Intro
 2.2.1  Re-implement 2.1 with this baseclass
 
 
-2.3  Core Data Background Task
+2.3  Core Data Background Task with Simulated Network service
 
 - Once you've decided how you want to do context saving, you should keep a reference to a local context.
 
