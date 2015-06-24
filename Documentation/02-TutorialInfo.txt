@@ -43,7 +43,13 @@ Intro
         - ultimately you decide.
 
 2.1  Simple Synchronous background task
-- must use saveWithOptions: and have synchronously, or else the start method finishes and thus the operation.  =BAD.
+    - must use saveWithOptions: and have synchronously, or else the start method finishes and thus the operation.  =BAD.
+
+2.1.1  Test our Code and UI Considerations
+    - Ensure the completion is being called on MT.
+
+2.1.2  UI Considerations
+    - NSFetchedResultsController is the King!  
 
 2.2  Simple Asynchronous background task
 - increase flexibility
@@ -72,4 +78,6 @@ add error to NSOperation subclass.
 - operations whose flow depends on what happened before it.
     - self.dependencies is not enough, because you don't know which NSOperation is the predecessor.
 
+2.7  Customizing NSOperationQueue
 
+- filtering incoming commands by subclassing addOperation: and addOperations:waitUntilFinished:
