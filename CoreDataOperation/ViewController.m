@@ -62,37 +62,14 @@
 
 - (IBAction)renameUser:(id)sender
 {
-    if (self.textField.text.length > 0) {
-        
-        // now we do something with him
-        CDORenameUserOperation *rename = [[CDORenameUserOperation alloc] initWithUser:(CDOUser*)[self.resultsController.fetchedObjects firstObject]
-                                                                          updatedName:self.textField.text];
-        
-//        __weak ViewController *weakself = self;
-//        [rename setCompletionBlock:^{
-//            
-//            // according to the API docs, there is no guarantee this will be called on the main thread.  So, let's guarantee that.
-//            
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                NSLog(@"Completed!");
-//                
-//                weakself.textField.placeholder = [weakself user].username;
-//                weakself.textField.text = nil;
-//                
-//            }];
-//            
-//            // equivalently, you could use gcd:
-//            //        dispatch_async(dispatch_get_main_queue(), ^{
-//            //
-//            //        });
-//            
-//        }];
-        
-        NSLog(@"Will add to queue now");
-        
-        [[CDOApplication application].backgroundQueue addOperation:rename];
-        
-    }
+    // now we do something with him
+    CDORenameUserOperation *rename = [[CDORenameUserOperation alloc] initWithUser:(CDOUser*)[self.resultsController.fetchedObjects firstObject]
+                                                                      updatedName:self.textField.text];
+    
+    
+    NSLog(@"Will add to queue now");
+    
+    [[CDOApplication application].backgroundQueue addOperation:rename];
 }
 
 #pragma mark - NSFetchedResultsController Related

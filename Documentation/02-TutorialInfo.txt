@@ -72,7 +72,28 @@ Intro
 
 2.4  Architectural Considerations (UI and errors)
 
-add error to NSOperation subclass.
+On Design Patterns:  Not my intention to get into these because a lot of people think there's one way to solve a problem -> their way.  And they are right.  That being said, no matter what your architecture or design pattern, it is important to BE CONSISTENT.  Users of your code will expect a certain style, so that even if they don't know your code, they can begin to expect how it probably works.
+
+- In 2.1.3, with NSFetchedResultsController, we've seen decoupling.  You do a data operation and let the changes be dealt with by a NSFetchedResultsController so that the UI is kept up-to-date.  This makes sense.
+
+What often happens in Mobile App Development is that you're doing a lot of things asynchronously.  Think server-client architecture.  Request an image, wait to download it, display it.
+
+Remember this:  if a task is asynchronous, plan for success and failure.  Design with both cases in mind.  How are you going to handle errors?
+
+Examine the rename operation.  Examine the model.   See how I have specified username is not allowed to be nil?  (Also, I create new ones with a default name.)  Now look at my rename action in ViewController.  Here I actually do simple data validation.  I am only allowed to set the username if it is non-nil and that length is greater than 1.
+
+Now what happens if I DO allow it?
+
+2.4.1  Remove data validation in View Controller and show how there is no feedback regarding validation errors and nothing happens.
+
+    - so I am not told if something goes wrong.  Add error stuff.
+
+2.4.2  add error to NSOperation subclass.
+
+    But how do I USE that??
+
+    - check in completion block if there is an error.
+        -- works, but a kind of strange way to do it.  Plus you get these retain cycle warnings, and keeping a weak ref may result in him being nil later because he'll be out of the Queue and no longer retained.
 
 
 2.5  Pimp my Operation!  Completion Blocks for asynchronous tasks
