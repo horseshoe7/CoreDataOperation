@@ -58,6 +58,9 @@ Intro
 - increase flexibility
 - in this case, allows the asynchronous MR tasks, but think networking/sockets as to why you'd need something like this.
 
+2.2.1  Re-implement 2.1 with this baseclass
+
+
 2.3  Core Data Background Task
 
 - Once you've decided how you want to do context saving, you should keep a reference to a local context.

@@ -22,6 +22,7 @@
 		DC69517E1B1DDC9D005FBF16 /* CDOApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DC69517D1B1DDC9D005FBF16 /* CDOApplication.m */; };
 		DCE12B661B3AA14B00E6CB3D /* CDOSynchronousCoreDataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE12B651B3AA14B00E6CB3D /* CDOSynchronousCoreDataOperation.m */; };
 		DCE12B691B3AA23F00E6CB3D /* CDORenameUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE12B681B3AA23F00E6CB3D /* CDORenameUserOperation.m */; };
+		DCE12B6C1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE12B6B1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		DCE12B651B3AA14B00E6CB3D /* CDOSynchronousCoreDataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOSynchronousCoreDataOperation.m; sourceTree = "<group>"; };
 		DCE12B671B3AA23F00E6CB3D /* CDORenameUserOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDORenameUserOperation.h; sourceTree = "<group>"; };
 		DCE12B681B3AA23F00E6CB3D /* CDORenameUserOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDORenameUserOperation.m; sourceTree = "<group>"; };
+		DCE12B6A1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOAsyncCoreDataOperation.h; sourceTree = "<group>"; };
+		DCE12B6B1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOAsyncCoreDataOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +229,8 @@
 				DCE12B651B3AA14B00E6CB3D /* CDOSynchronousCoreDataOperation.m */,
 				DCE12B671B3AA23F00E6CB3D /* CDORenameUserOperation.h */,
 				DCE12B681B3AA23F00E6CB3D /* CDORenameUserOperation.m */,
+				DCE12B6A1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.h */,
+				DCE12B6B1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.m */,
 			);
 			path = DataOperations;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 				DC6951411B1DCE50005FBF16 /* ViewController.m in Sources */,
 				DCE12B691B3AA23F00E6CB3D /* CDORenameUserOperation.m in Sources */,
 				DC6951721B1DD640005FBF16 /* _CDOUser.m in Sources */,
+				DCE12B6C1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.m in Sources */,
 				DCE12B661B3AA14B00E6CB3D /* CDOSynchronousCoreDataOperation.m in Sources */,
 				DC69513E1B1DCE50005FBF16 /* AppDelegate.m in Sources */,
 				DC69516F1B1DD630005FBF16 /* CDOUser.m in Sources */,
