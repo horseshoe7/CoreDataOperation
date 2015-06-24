@@ -49,7 +49,10 @@ Intro
     - Ensure the completion is being called on MT.
 
 2.1.2  UI Considerations
-    - NSFetchedResultsController is the King!  
+    a - Adding UI
+
+2.1.3  NSFetchedResultsController
+    - decouple the UI
 
 2.2  Simple Asynchronous background task
 - increase flexibility
