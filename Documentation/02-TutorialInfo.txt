@@ -108,7 +108,9 @@ http://twobitlabs.com/2012/12/objective-c-ios-blocks-cheat-sheet/
 
 typedef void(^CDOCompletionBlock)(BOOL success, id userInfo, NSError *error);
 
-2.5.1 Don't even need NSFetchedResultsController if you don't want.  FLEXIBLE.'
+YOU DOCUMENT what the userInfo is going to be.
+
+2.5.1 Don't even need NSFetchedResultsController if you don't want.  FLEXIBLE.
 
 
 2.6  Dependencies and Chaining
