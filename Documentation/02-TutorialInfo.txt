@@ -86,7 +86,7 @@ Now what happens if I DO allow it?
 
 2.4.1  Remove data validation in View Controller and show how there is no feedback regarding validation errors and nothing happens.
 
-    - so I am not told if something goes wrong.  Add error stuff.
+    - so I am not told if something goes wrong.  Add error stuff.  Nothing happens in UI, yet look at log when you use empty string.
 
 2.4.2  add error to NSOperation subclass.
 

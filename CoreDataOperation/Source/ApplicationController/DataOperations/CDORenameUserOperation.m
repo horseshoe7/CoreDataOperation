@@ -42,7 +42,7 @@
      }
                       completion:^(BOOL contextDidSave, NSError *error)
      {
-         
+         weakself.error = error;
          [weakself finish];
      }];
 }

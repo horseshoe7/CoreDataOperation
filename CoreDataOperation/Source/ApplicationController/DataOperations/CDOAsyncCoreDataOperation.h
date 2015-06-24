@@ -18,6 +18,8 @@
     BOOL _isFinished;
 }
 
+@property (nonatomic, strong) NSError *error;
+
 - (instancetype)initWithModel:(NSManagedObject*)model;
 
 - (void)work;  // should call finish inside of this method somewhere, or once your work is done, if asynchronous

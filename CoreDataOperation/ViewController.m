@@ -66,6 +66,19 @@
     CDORenameUserOperation *rename = [[CDORenameUserOperation alloc] initWithUser:(CDOUser*)[self.resultsController.fetchedObjects firstObject]
                                                                       updatedName:self.textField.text];
     
+    __weak ViewController *weakself = self;
+    [rename setCompletionBlock:^{
+        
+        // according to the API docs, there is no guarantee this will be called on the main thread.  So, let's guarantee that.
+        if (rename.error) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                NSLog(@"Completed with Error!");
+                
+                weakself.textField.placeholder = @"Validation Error!";
+                
+            }];
+        }
+    }];
     
     NSLog(@"Will add to queue now");
     
