@@ -5,7 +5,7 @@ This isn't so much a section as it is a tangent, but I thought it of interest to
 
 It's ultimately up to you how you want to organize your app, but I thought it here a decent idea to share with you some of the approaches I take, as I have built a good number of apps, and they have been reported to be rather stable.  :D
 
-Just remember, as I must:  There is ALWAYS a bigger fish.  I have been doing this for 4-5 years, so I know there is a bigger fish.  For some reason he doesn't ever find me.
+Just remember, as I must:  There is ALWAYS a bigger fish.  I have been doing this for 4-5 years, so I know there is a bigger fish.  For some reason he doesn't ever find me and I'm getting sad about that.  I wonder if I'm living in a vacuum.
 
 What I notice in my apps is that there are always aspects of the app that never seem to "belong" to a View Controller.  There are app-wide methods and functionality you need that aren't bound to any one instance of anything, except the application itself.  Now, Apple already provides the Application Delegate, but I don't know about you, I don't like using Macros in code, because they work "for you", but anyone else using your code has to understand what your macros do.
 
@@ -13,18 +13,63 @@ I also don't like writing
 
 ```AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];```
 
-and I also don't like having a 'fat delegate'.  I see it as an entry point to an app, and that's it.  No, I tend to keep a singleton instance to my application that owns certain tasks/objects that aren't view controller specific, such as:
+and I also don't like having a 'fat app delegate'.  I see it as an entry point to an app, and that's it.  No, I tend to keep a singleton instance to my application that owns certain tasks/objects that aren't view controller specific, such as:
 
     - an event logger
-    - an operation queue
+    - an operation queue for background tasks
     - a networking client
     - notification handler
-    - convenience methods
+    - convenience methods, such as displaying alerts for errors
 
 It's hard to say what this should have because of course Applications are specific to the erm... application you need to build.
 
 That said, I thought I'd digress briefly so to mention an appropriate place to keep an instance to an NSOperationQueue, since this is our next topic.
 
 ## Create CDOApplication singleton, then remove it from project.  Commit as section_01.5.  Then add to project.  Commit. as section_01.5.1 ##
+
+
+
+
+2.0  NSOperation
+----------------
+
+Intro
+
+2.0  Core Data Stacks and background queues
+    PSC -> BG MOC (saving) -> MT MOC (using)
+
+    - children of BG or of MT??  Your choice.  I tend to use BG, since MT gets notified of persistent saves.
+        - this could be undesirable / bad performance as I'm saving too often to disk.  I haven't had performance bottlenecks
+        - ultimately you decide.
+
+2.1  Simple Synchronous background task
+- must use saveWithOptions: and have synchronously, or else the start method finishes and thus the operation.  =BAD.
+
+2.2  Simple Asynchronous background task
+- increase flexibility
+- in this case, allows the asynchronous MR tasks, but think networking/sockets as to why you'd need something like this.
+
+2.3  Core Data Background Task
+
+- Once you've decided how you want to do context saving, you should keep a reference to a local context.
+
+- be careful!  Think in thread space.  What if you have concurrent operations that both use a local context?  you may be creating objects that don't know about each other, meant to be the same object.
+
+- consider dependencies.  (later)
+
+
+2.4  Architectural Considerations (UI and errors)
+
+add error to NSOperation subclass.
+
+
+2.5  Pimp my Operation!  Completion Blocks for asynchronous tasks
+
+- provides more info about what happened with the operation
+
+2.6  Dependencies and Chaining
+
+- operations whose flow depends on what happened before it.
+    - self.dependencies is not enough, because you don't know which NSOperation is the predecessor.
 
 
