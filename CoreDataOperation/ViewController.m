@@ -41,6 +41,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CDOUser*)onlyUser
+{
+    CDOUser *onlyUser = [CDOUser MR_findFirstInContext:context];
+    return onlyUser;
+}
+
 - (void)createUserIfRequired
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];  // I get in the habit of always giving the context, as it forces me to think in threads.  Some devs tell you to hide these details.
@@ -63,22 +69,24 @@
 - (IBAction)renameUser:(id)sender
 {
     // now we do something with him
-    CDORenameUserOperation *rename = [[CDORenameUserOperation alloc] initWithUser:(CDOUser*)[self.resultsController.fetchedObjects firstObject]
-                                                                      updatedName:self.textField.text];
     
     __weak ViewController *weakself = self;
-    [rename setCompletionBlock:^{
-        
-        // according to the API docs, there is no guarantee this will be called on the main thread.  So, let's guarantee that.
-        if (rename.error) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                NSLog(@"Completed with Error!");
-                
-                weakself.textField.placeholder = @"Validation Error!";
-                
-            }];
+    CDORenameUserOperation *rename = [[CDORenameUserOperation alloc] initWithUser:(CDOUser*)[self.resultsController.fetchedObjects firstObject]
+                                                                      updatedName:self.textField.text
+                                                                       completion:^(BOOL success, id userInfo, NSError *error)
+    {
+        // we defined that the completion block will be called on the main thread!
+        if (error) {
+            weakself.textField.placeholder = @"Validation Error!";
         }
+        
+        // CAVEAT.  When you make your own subclasses, and are dealing with Core Data, it is wise to send NSManagedObjectID objects around in your userInfo.  Or at least be careful that you aren't passing NSManagedObjects from your background work methods back to the main thread.
+        
+        
+        
     }];
+    
+    
     
     NSLog(@"Will add to queue now");
     

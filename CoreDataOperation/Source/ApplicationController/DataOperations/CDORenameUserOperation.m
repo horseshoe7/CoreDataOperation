@@ -17,9 +17,9 @@
 
 @implementation CDORenameUserOperation
 
-- (instancetype)initWithUser:(CDOUser*)user updatedName:(NSString*)updatedName
+- (instancetype)initWithUser:(CDOUser*)user updatedName:(NSString*)updatedName completion:(CDOCompletionBlock)completionBlock
 {
-    self = [super initWithModel:user];  // keeps objectId reference.
+    self = [super initWithModel:user completion:completionBlock];  // keeps objectId reference.
     if (self) {
         
         self.delayTime = 1.2f;
@@ -42,6 +42,7 @@
      }
                       completion:^(BOOL contextDidSave, NSError *error)
      {
+         weakself.userInfo = _objectId;
          weakself.error = error;
          [weakself finish];
      }];

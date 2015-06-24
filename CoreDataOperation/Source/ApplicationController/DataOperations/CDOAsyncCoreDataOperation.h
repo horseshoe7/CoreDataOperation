@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "MagicalRecord.h"
 
+typedef void(^CDOCompletionBlock)(BOOL success, id userInfo, NSError *error);
+
 @interface CDOAsyncCoreDataOperation : NSOperation
 {
     @protected
@@ -18,9 +20,11 @@
     BOOL _isFinished;
 }
 
-@property (nonatomic, strong) NSError *error;
+@property (nonatomic, strong) NSError *error;  // these are ideally in a protected, private interface, that you would implement via a separate category header.
+@property (nonatomic, strong) id userInfo;  // generally not needed to read
+@property (nonatomic, copy) CDOCompletionBlock opCompletionBlock;  // generally not needed to read
 
-- (instancetype)initWithModel:(NSManagedObject*)model;
+- (instancetype)initWithModel:(NSManagedObject*)model completion:(CDOCompletionBlock)completion;
 
 - (void)work;  // should call finish inside of this method somewhere, or once your work is done, if asynchronous
 

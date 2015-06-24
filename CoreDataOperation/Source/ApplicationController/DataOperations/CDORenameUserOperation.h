@@ -12,6 +12,8 @@
 
 @interface CDORenameUserOperation : CDODelayedAsyncOperation
 
-- (instancetype)initWithUser:(CDOUser*)user updatedName:(NSString*)updatedName;
+- (instancetype)initWithUser:(CDOUser*)user
+                 updatedName:(NSString*)updatedName
+                  completion:(CDOCompletionBlock)completionBlock;
 
 @end

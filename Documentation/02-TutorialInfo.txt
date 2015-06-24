@@ -100,6 +100,17 @@ Now what happens if I DO allow it?
 
 - provides more info about what happened with the operation
 
+Completion Blocks are useful because they are an inline callback.  You don't have to lose the context of what you are trying to do.   Some people (like AFNetworking) like to split tasks up into having a succeededBlock and a failureBlock.  Maybe this is a style thing, but I just prefer having that in one block.  "Do this, and tell me when you're done, and what the result was.  I'll handle it from there." is for me easier than 'forking the road too soon.'
+
+In order to use blocks, admittedly a horrible syntax, I constantly refer to this page:
+
+http://twobitlabs.com/2012/12/objective-c-ios-blocks-cheat-sheet/
+
+typedef void(^CDOCompletionBlock)(BOOL success, id userInfo, NSError *error);
+
+2.5.1 Don't even need NSFetchedResultsController if you don't want.  FLEXIBLE.'
+
+
 2.6  Dependencies and Chaining
 
 - operations whose flow depends on what happened before it.
