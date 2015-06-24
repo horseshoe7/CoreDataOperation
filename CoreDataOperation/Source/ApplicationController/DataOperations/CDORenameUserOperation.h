@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Iconoclasm Spasms. All rights reserved.
 //
 
-#import "CDOSynchronousCoreDataOperation.h"
+#import "CDOAsyncCoreDataOperation.h"
 
 @class CDOUser;
 
-@interface CDORenameUserOperation : CDOSynchronousCoreDataOperation
+@interface CDORenameUserOperation : CDOAsyncCoreDataOperation
 
 - (instancetype)initWithUser:(CDOUser*)user updatedName:(NSString*)updatedName;
 

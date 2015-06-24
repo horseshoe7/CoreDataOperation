@@ -27,17 +27,22 @@
     return self;
 }
 
-- (void)main
+- (void)work
 {
-    // we have to WAIT here, because this operation is synchronous!
-    // Otherwise it would report being finished without being finished!
+    __weak CDORenameUserOperation *weakself = self;
     
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-        
-        CDOUser *localUser = (CDOUser*)[localContext objectWithID:_objectId];  // NSManagedObjectID objects can be passed around threads, but NOT NSManagedObject models.
-        
-        localUser.username = _updatedName;
-    }];
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext)
+     {
+         CDOUser *localUser = (CDOUser*)[localContext objectWithID:_objectId];  // NSManagedObjectID objects can be passed around threads, but NOT NSManagedObject models.
+         
+         localUser.username = _updatedName;
+         
+     }
+                      completion:^(BOOL contextDidSave, NSError *error)
+     {
+         
+         [weakself finish];
+     }];
 }
 
 @end
