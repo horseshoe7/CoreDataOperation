@@ -73,6 +73,7 @@
 		DCE12B6B1B3AAD5700E6CB3D /* CDOAsyncCoreDataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOAsyncCoreDataOperation.m; sourceTree = "<group>"; };
 		DCE12B6D1B3AB3F300E6CB3D /* CDODelayedAsyncOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDODelayedAsyncOperation.h; sourceTree = "<group>"; };
 		DCE12B6E1B3AB3F300E6CB3D /* CDODelayedAsyncOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDODelayedAsyncOperation.m; sourceTree = "<group>"; };
+		DCE12B701B3B225E00E6CB3D /* 03-TutorialInfo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "03-TutorialInfo.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +212,7 @@
 			children = (
 				DC6951751B1DD7AE005FBF16 /* 01-TutorialInfo.txt */,
 				DC6951761B1DD7AE005FBF16 /* 02-TutorialInfo.txt */,
+				DCE12B701B3B225E00E6CB3D /* 03-TutorialInfo.txt */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";

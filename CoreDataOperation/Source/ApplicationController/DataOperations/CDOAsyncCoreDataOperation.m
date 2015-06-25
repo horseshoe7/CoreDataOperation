@@ -107,7 +107,7 @@
 - (void)finish
 {
     if (self.isCancelled) {
-        NSLog(@"Behaviour undefined.  Should it 'complete' with a warning, or just silently cancel as if it had never happened?");
+        NSLog(@"Behaviour undefined.  Should it 'complete' with an error, or just silently cancel as if it had never happened?");
         [self endOperation:nil];
         return;
     }

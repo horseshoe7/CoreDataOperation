@@ -1,0 +1,24 @@
+3.  Experimentation
+
+3.1  Chaining Commands
+
+It's one thing to create a batch with dependencies, but what if the result of one command affects whether another gets queued up?
+
+    - how do I set that up in advance such that flow is maintained?
+
+
+i.e start situation
+
+enqueue Operations:
+
+A
+B
+C
+D
+
+and find that the result of B requires a few other commands to be called before C should be called.
+
+But B itself is a standalone operation.  You don't need to use it in combination with others if you don't want.
+
+It's almost like I'm proposing a 'routing' operation.  You take the completion block of B, 
+
