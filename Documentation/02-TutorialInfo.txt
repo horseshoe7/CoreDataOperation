@@ -67,7 +67,7 @@ Intro
 
 - be careful!  Think in thread space.  What if you have concurrent operations that both use a local context?  you may be creating objects that don't know about each other, meant to be the same object.
 
-- consider dependencies.  (later)
+- consider dependencies.  (later), or in your NSOperationQueue, maxConcurrentOperationCount = 1
 
 
 2.4  Architectural Considerations (UI and errors)

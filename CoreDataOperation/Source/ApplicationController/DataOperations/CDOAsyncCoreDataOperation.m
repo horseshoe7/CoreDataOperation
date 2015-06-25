@@ -207,6 +207,8 @@
     self.previousOperation = operation;
     self.nextOperation = next;
     
+    // note!  copying the completion block does not copy the userInfo and the error object over.  This is currently lost!
+    
     if (copyBehaviour == CDOCompletionBlockFollowBehaviourMove || copyBehaviour == CDOCompletionBlockFollowBehaviourCopy) {
         self.opCompletionBlock = operation.opCompletionBlock;
     }
