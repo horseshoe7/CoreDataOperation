@@ -10,12 +10,14 @@
 #import "CDOApplication.h"
 #import "CDOUser.h"
 #import "CDORenameUserOperation.h"
+#import "CDOTestLinkOperation.h"
 
-@interface ViewController ()
+@interface ViewController ()<NSFetchedResultsControllerDelegate>
 {
-
+    NSFetchedResultsController *_resultsController;
 }
 @property (nonatomic, weak) IBOutlet UITextField *textField;
+@property (nonatomic, readonly) NSFetchedResultsController *resultsController;
 
 @end
 
@@ -25,6 +27,8 @@
     [super viewDidLoad];
     
     [self createUserIfRequired];  // now we don't really need this other than to create the user.
+    
+    //[self.resultsController performFetch:nil];
     
     CDOUser *user = [self onlyUser];
     
@@ -38,6 +42,8 @@
 
 - (CDOUser*)onlyUser
 {
+//    return (CDOUser*)[self.resultsController.fetchedObjects firstObject];
+    
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     CDOUser *onlyUser = [CDOUser MR_findFirstInContext:context];
     return onlyUser;
@@ -94,5 +100,83 @@
     [[CDOApplication application].backgroundQueue addOperation:rename];
 }
 
+- (IBAction)pressedMagicButton:(id)sender
+{
+    // create rename op
+    __weak ViewController *weakself = self;
+    CDORenameUserOperation *renameA = [[CDORenameUserOperation alloc] initWithUser:(CDOUser*)[self onlyUser]
+                                                                      updatedName:self.textField.text
+                                                                       completion:^(BOOL success, NSManagedObjectID *objectId, NSError *error)
+                                      {
+                                          // we defined that the completion block will be called on the main thread!
+                                          if (error) {
+                                              weakself.textField.placeholder = @"Validation Error!";
+                                          }
+                                          else
+                                          {
+                                              weakself.textField.text = nil;
+                                              weakself.textField.placeholder = [self onlyUser].username;
+                                          }
+                                              
+                                          // CAVEAT.  When you make your own subclasses, and are dealing with Core Data, it is wise to send NSManagedObjectID objects around in your userInfo.  Or at least be careful that you aren't passing NSManagedObjects from your background work methods back to the main thread.
+                                      }];
+    
+    renameA.name = @"A";
+    
+    CDORenameUserOperation *renameB = [[CDORenameUserOperation alloc] initWithUser:(CDOUser*)[self onlyUser]
+                                                                      updatedName:@"Finished"
+                                                                       completion:nil];
+    
+    renameB.name = @"B";
+    
+    
+    [renameB followOperation:renameA completionBlockBehaviour:CDOCompletionBlockFollowBehaviourCopy];
+    
+ 
+    [[CDOApplication application].backgroundQueue addOperation:renameA];
+    [[CDOApplication application].backgroundQueue addOperation:renameB];
+    
+    // add testlink op
+    CDOTestLinkOperation *testlink = [[CDOTestLinkOperation alloc] initWithModel:nil completion:nil];
+    testlink.name = @"link";
+    [testlink followOperation:renameA completionBlockBehaviour:CDOCompletionBlockFollowBehaviourCopy];
+    
+    [[CDOApplication application].backgroundQueue addOperation:testlink];
+}
+
+#pragma mark - Fetched Results
+
+- (NSFetchedResultsController*)resultsController
+{
+    if (!_resultsController) {
+        NSFetchedResultsController *controller;
+        
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+        NSFetchRequest *request = [CDOUser MR_requestAllSortedBy:@"username" ascending:YES inContext:context];
+        
+        controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                         managedObjectContext:context
+                                                           sectionNameKeyPath:nil
+                                                                    cacheName:nil];
+        
+        controller.delegate = self;
+        _resultsController = controller;
+    }
+    return _resultsController;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    
+    CDOUser *user = (CDOUser*)anObject;
+    
+    self.textField.text = nil;
+    self.textField.placeholder = user.username;
+    
+}
 
 @end

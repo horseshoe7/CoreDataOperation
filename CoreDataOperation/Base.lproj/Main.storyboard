@@ -30,14 +30,25 @@
                                     <action selector="renameUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FZC-GI-JWh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0h-Qh-tBW">
+                                <rect key="frame" x="277" y="136" width="46" height="30"/>
+                                <state key="normal" title="Magic!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedMagicButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Op-Ni-tLL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zOI-kk-nTS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="14" id="0Dg-n0-1Xw"/>
                             <constraint firstItem="ul6-0N-rZJ" firstAttribute="centerX" secondItem="zOI-kk-nTS" secondAttribute="centerX" id="AIz-dB-KyN"/>
+                            <constraint firstItem="h0h-Qh-tBW" firstAttribute="centerX" secondItem="ul6-0N-rZJ" secondAttribute="centerX" id="G9L-Ae-qiT"/>
                             <constraint firstItem="ul6-0N-rZJ" firstAttribute="top" secondItem="zOI-kk-nTS" secondAttribute="bottom" constant="8" id="RGn-dx-7XK"/>
                             <constraint firstItem="zOI-kk-nTS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="YQq-Be-aF8"/>
                             <constraint firstAttribute="trailing" secondItem="zOI-kk-nTS" secondAttribute="trailing" constant="16" id="oMb-9j-7Nj"/>
+                            <constraint firstItem="h0h-Qh-tBW" firstAttribute="top" secondItem="ul6-0N-rZJ" secondAttribute="bottom" constant="34" id="zCL-c9-M7g"/>
                         </constraints>
                     </view>
                     <connections>

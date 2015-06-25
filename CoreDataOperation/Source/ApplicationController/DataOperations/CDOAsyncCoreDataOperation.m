@@ -9,6 +9,11 @@
 #import "CDOAsyncCoreDataOperation.h"
 
 @interface CDOAsyncCoreDataOperation()
+{
+    NSManagedObjectContext *_localContext;
+}
+@property (nonatomic, weak, readwrite) CDOAsyncCoreDataOperation *previousOperation;
+@property (nonatomic, weak, readwrite) CDOAsyncCoreDataOperation *nextOperation;
 
 @end
 
@@ -24,6 +29,10 @@
     return self;
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%@ - %@", [super description], [self respondsToSelector:@selector(name)] ? self.name : @"(no name)"];
+}
 
 - (instancetype)initWithModel:(NSManagedObject*)model completion:(CDOCompletionBlock)completion
 {
@@ -80,6 +89,8 @@
 
 - (void)start
 {
+    NSLog(@"Started %@", self.description);
+    
     // this property has to be KVO observable, so we send those here and now.
     [self willChangeValueForKey:@"isExecuting"];
     _isExecuting = YES;
@@ -148,6 +159,65 @@
     
     [self didChangeValueForKey:@"isExecuting"];
     [self didChangeValueForKey:@"isFinished"];
+}
+
+#pragma mark - Local Context
+
+- (NSManagedObjectContext*)localContext
+{
+    if (!_localContext) {
+        NSManagedObjectContext *parentContext = [NSManagedObjectContext MR_rootSavingContext];
+        NSManagedObjectContext *localContext = [NSManagedObjectContext MR_contextWithParent:parentContext];
+        _localContext = localContext;
+    }
+    
+    return _localContext;
+}
+
+#pragma mark - Linked List
+- (void)followOperation:(CDOAsyncCoreDataOperation*)operation
+{
+    [self followOperation:operation completionBlockBehaviour:CDOCompletionBlockFollowBehaviourLeave];
+}
+
+- (void)followOperation:(CDOAsyncCoreDataOperation*)operation completionBlockBehaviour:(CDOCompletionBlockFollowBehaviour)copyBehaviour
+{
+    // checks
+    if (operation.nextOperation == self || self.previousOperation == operation) {
+        
+        // do nothing.  They are already set.
+        
+        // check however that this system works correctly!
+        if ((operation.nextOperation == self && operation.nextOperation != nil) &&
+             (self.previousOperation == operation && self.previousOperation != nil) == NO)
+        {
+            NSAssert(NO, @"Something went wrong setting up the linked list.  Check your logic!");
+        }
+    }
+    
+    if (operation) {
+        [self addDependency:operation];
+    }
+    
+    CDOAsyncCoreDataOperation *next = operation.nextOperation;
+    
+    if (next) {
+        [next removeDependency:operation];
+        [next addDependency:self];
+        
+        next.previousOperation = self;
+    }
+    
+    operation.nextOperation = self;
+    self.previousOperation = operation;
+    self.nextOperation = next;
+    
+    if (copyBehaviour == CDOCompletionBlockFollowBehaviourMove || copyBehaviour == CDOCompletionBlockFollowBehaviourCopy) {
+        self.opCompletionBlock = operation.opCompletionBlock;
+    }
+    if (copyBehaviour == CDOCompletionBlockFollowBehaviourMove) {
+        operation.opCompletionBlock = nil;
+    }
 }
 
 @end

@@ -19,6 +19,8 @@
 
 - (void)start
 {
+    NSLog(@"Started %@", self.description);
+    
     // this property has to be KVO observable, so we send those here and now.
     [self willChangeValueForKey:@"isExecuting"];
     _isExecuting = YES;

@@ -8,6 +8,7 @@
 
 #import "CDOApplication.h"
 #import "MagicalRecord.h"
+#import "CDOOperationQueue.h"
 
 @implementation CDOApplication
 
@@ -47,7 +48,7 @@ static CDOApplication *Application = nil;
     // We set it up like this for Core Data, but what you are learning in this tutorial
     // with NSOperation, you may want to set up a queue to behave differently.
     
-    _backgroundQueue = [[NSOperationQueue alloc] init];
+    _backgroundQueue = [[CDOOperationQueue alloc] init];
     _backgroundQueue.qualityOfService = NSQualityOfServiceBackground;
     _backgroundQueue.maxConcurrentOperationCount = 1;
 }
