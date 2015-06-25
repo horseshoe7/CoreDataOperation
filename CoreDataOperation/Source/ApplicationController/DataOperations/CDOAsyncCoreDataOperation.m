@@ -29,11 +29,6 @@
     return self;
 }
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"%@ - %@", [super description], [self respondsToSelector:@selector(name)] ? self.name : @"(no name)"];
-}
-
 - (instancetype)initWithModel:(NSManagedObject*)model completion:(CDOCompletionBlock)completion
 {
     self = [self init];
