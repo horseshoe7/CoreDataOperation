@@ -113,11 +113,3 @@ YOU DOCUMENT what the userInfo is going to be.
 2.5.1 Don't even need NSFetchedResultsController if you don't want.  FLEXIBLE.
 
 
-2.6  Dependencies and Chaining
-
-- operations whose flow depends on what happened before it.
-    - self.dependencies is not enough, because you don't know which NSOperation is the predecessor.
-
-2.7  Customizing NSOperationQueue
-
-- filtering incoming commands by subclassing addOperation: and addOperations:waitUntilFinished:

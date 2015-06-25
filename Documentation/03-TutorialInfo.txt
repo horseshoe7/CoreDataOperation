@@ -22,3 +22,5 @@ But B itself is a standalone operation.  You don't need to use it in combination
 
 It's almost like I'm proposing a 'routing' operation.  You take the completion block of B, 
 
+
+3.2
